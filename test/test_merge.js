@@ -22,4 +22,8 @@ describe('merge', function() {
         let A = [1, 2], B = [2, 1, 2];
         assert.deepEqual(merge(A, B), B);
     });
+    // it('should merge objects inside arrays', function() {
+    //     let A = [{cat: 1}], B = [{dog: 2}];
+    //     assert.deepEqual(merge(A, B), [{cat
+    // });
 });

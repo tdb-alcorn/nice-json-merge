@@ -46,13 +46,14 @@ function hashedArray(a) {
     let h;
     for (let i=0, len=a.length; i<len; i++) {
         h = hash(a[i]);
-        if (r[h]) {
-            r[h].indices.push(i);
+        if (!r[h]) {
+            r[h] = {
+                indices: [i],
+                value: a[i],
+            };
+            continue;
         }
-        r[h] = {
-            indices: [i],
-            value: a[i],
-        };
+        r[h].indices.push(i);
     }
     return r;
 }
