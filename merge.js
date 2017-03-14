@@ -16,7 +16,7 @@ module.exports = function merge(A, B) {
     switch (B.constructor) {
         case Object:
             C = Object.assign({}, B);
-            // TODO sort and implement and indexOfSorted to take advantage when searching
+            // TODO sort and implement an indexOfSorted to take advantage when searching
             let keysB = Object.keys(B);
             for (let i=0, keys=Object.keys(A), len=keys.length; i<len; i++) {
                 if (keysB.indexOf(keys[i]) >= 0) {
@@ -27,14 +27,28 @@ module.exports = function merge(A, B) {
             }
             break;
         case Array:
-            let merged = Object.assign(hashedArray(A), hashedArray(B));
-            C = unhashArray(merged);
+            C = [];
+            const { length, left } = shorter(A,B);
+            for (let i=0; i<length; i++) {
+                C.push(merge(A[i], B[i]));
+            }
+            if (left) {
+                C = C.concat(B.slice(length));
+                break;
+            }
+            C = C.concat(A.slice(length));
             break;
         default:
             C = B;
             break;
     }
     return C;
+}
+
+function shorter(a, b) {
+    const al = a.length, bl = b.length;
+    if (al < bl) return { length: al, left: true };
+    return { length: bl, left: false };
 }
 
 /**
@@ -57,6 +71,11 @@ function hashedArray(a) {
     }
     return r;
 }
+
+// function arrayMerge(A, B) {
+//     let merged = Object.assign(hashedArray(A), hashedArray(B));
+//     return unhashArray(merged);
+// }
 
 function unhashArray(h) {
     const result = [];
