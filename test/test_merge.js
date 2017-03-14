@@ -26,4 +26,27 @@ describe('merge', function() {
         let A = [{cat: 1}], B = [{dog: 2}];
         assert.deepEqual(merge(A, B), [{cat: 1, dog: 2}]);
     });
+    it('should pass the README example case or else I will be humiliated', function() {
+        const A = {
+            cat: 1,
+            dog: {
+                beagle: 2,
+                boxer: 3,
+            },
+        };
+        const B = {
+            cat: 2,
+            dog: {
+                labrador: 4,
+            },
+        };
+        assert.deepEqual(merge(A, B), {
+            cat: 2,
+            dog: {
+                beagle: 2,
+                boxer: 3,
+                labrador: 4,
+            },
+        });
+    });
 });
