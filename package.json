@@ -10,6 +10,14 @@
   "scripts": {
     "test": "mocha"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdb-alcorn/nice-json-merge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tdb-alcorn/nice-json-merge/issues"
+  },
+  "homepage": "https://github.com/tdb-alcorn/nice-json-merge#readme",
   "author": "Tom Alcorn <tdb.alcorn@gmail.com>",
   "license": "MIT"
 }
